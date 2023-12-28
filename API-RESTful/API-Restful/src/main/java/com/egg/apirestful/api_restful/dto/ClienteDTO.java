@@ -21,4 +21,5 @@ public class ClienteDTO {
     private String name;
     @Email(message = "Invalid email")
     private String email;
+    private boolean active;
 }
