@@ -1,7 +1,15 @@
 package com.egg.apirestful.api_restful.dto;
 
-import javax.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ProductDTO {
     @NotBlank(message = "Cannot be blank")
     private String id;
@@ -9,5 +17,6 @@ public class ProductDTO {
     private String nombre;
     @NotBlank(message = "Cannot be blank")
     private Double precio;
+    private Boolean active;
 
 }

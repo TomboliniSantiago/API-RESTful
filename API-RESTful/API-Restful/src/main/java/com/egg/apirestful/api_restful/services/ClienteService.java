@@ -51,14 +51,16 @@ public class ClienteService {
 
     }
 
-    public void deactivateClient(String id){
+    public ClienteDTO deactivateClient(String id) throws MyException {
         Cliente cliente = clienteRepository.getById(id);
 
         if (cliente.getId()!=null){
-
-
+            cliente.setActive(false);
+            this.clienteRepository.save(cliente);
+            return clienteMapper.convertToDto(cliente);
+        }else {
+            throw new MyException("Couldn't deactivate the user");
         }
-
     };
     @Transactional
     public ClienteDTO addCliente(ClienteDTO clienteDTO) throws MyException{
@@ -75,6 +77,9 @@ public class ClienteService {
         }
         if(clienteDTO.getTelefono().isEmpty()){
             throw new MyException("El teléfono no puede estar vacio");
+        }
+        if(clienteDTO.getName().isEmpty()){
+            throw new MyException("El nombre no puede estar vacio");
         }
     }
 
